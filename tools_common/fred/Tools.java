@@ -2,6 +2,7 @@ package fred;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.Mod;
@@ -44,7 +45,7 @@ public class Tools
     {
 
         
-        itemCrafter=new ItemCrafter(1000).setUnlocalizedName("CrafterTool").setCreativeTab(CreativeTabs.tabTools).setMaxStackSize(1);
+        itemCrafter=new ItemCrafter(1000).setUnlocalizedName("CrafterTool").setCreativeTab(CreativeTabs.tabTools).setMaxStackSize(16);
         LanguageRegistry.addName(itemCrafter, "Portable crafter");
     }
     
@@ -57,10 +58,30 @@ public class Tools
     public void ini(FMLInitializationEvent e)
     {
         System.out.println("Tools mod ini...");
-        GameRegistry.addRecipe(new ItemStack(itemCrafter), "xxx", "xyx","xxx",'x',new ItemStack(Block.planks),'y',new ItemStack(Block.cobblestone));
+        GameRegistry.addRecipe(new ItemStack(itemCrafter,16), "xxx","yyy","zzz",'x',new ItemStack(Item.pickaxeDiamond),'y',new ItemStack(Item.axeDiamond),'z',Item.shovelDiamond);
         
-        NetworkRegistry.instance().registerGuiHandler(this, Tools.proxy);
+        //silk touch
+        addSilkC(Item.pickaxeDiamond);
+        addSilkC(Item.axeDiamond);
+        addSilkC(Item.shovelDiamond);
+        //Fortune
+        addFortuneC(Item.pickaxeDiamond);
+        addFortuneC(Item.axeDiamond);
+        addFortuneC(Item.shovelDiamond);
     }
+    private void addSilkC(Item tool)
+    {
+        ItemStack d=new ItemStack(tool);
+        d.addEnchantment(Enchantment.silkTouch, 1);
+        GameRegistry.addRecipe(d,"xzx","xyx","xxx",'x',new ItemStack(Block.blockDiamond),'y',new ItemStack(tool),'z',new ItemStack(itemCrafter));
+    }
+    private void addFortuneC(Item tool)
+    {
+        ItemStack d=new ItemStack(tool);
+        d.addEnchantment(Enchantment.fortune, 1);
+        GameRegistry.addRecipe(d,"xzx","xyx","xxx",'x',new ItemStack(Block.blockGold),'y',new ItemStack(tool),'z',new ItemStack(itemCrafter));
+    }
+    
     @PostInit
     public void postInit(FMLPostInitializationEvent e)
     {
