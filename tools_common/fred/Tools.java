@@ -1,10 +1,13 @@
 package fred;
 
+import java.util.logging.Logger;
+
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -27,6 +30,8 @@ public class Tools
 {
     @Instance
     public static Tools instance;
+    
+    Logger log=Logger.getLogger("Tools");
     
     @SidedProxy(clientSide="fred.client.ClientProxy", serverSide="fred.CommonProxy")
     public static CommonProxy proxy;
@@ -57,7 +62,10 @@ public class Tools
     @Init
     public void ini(FMLInitializationEvent e)
     {
-        System.out.println("Tools mod ini...");
+        log.setParent(FMLLog.getLogger());
+        
+        log.info("Loading tools mod!");
+        
         GameRegistry.addRecipe(new ItemStack(itemCrafter,16), "xxx","yyy","zzz",'x',new ItemStack(Item.pickaxeDiamond),'y',new ItemStack(Item.axeDiamond),'z',Item.shovelDiamond);
         
         //silk touch
@@ -68,6 +76,9 @@ public class Tools
         addFortuneC(Item.pickaxeDiamond);
         addFortuneC(Item.axeDiamond);
         addFortuneC(Item.shovelDiamond);
+        
+        
+        log.info("Finished loading!");
     }
     private void addSilkC(Item tool)
     {
