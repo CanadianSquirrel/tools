@@ -1,0 +1,13 @@
+[
+{
+	"modid":"F_tls",
+	"name": "Fred's Tools",
+	"description" : "Provides a range of upgrades to tools and other things",
+	"version" : "0.0.1",
+	"url":"coming soon",
+	 "authorList":[
+	 	"Fred"
+	 ],
+	 "credits":"Me."
+}
+]
