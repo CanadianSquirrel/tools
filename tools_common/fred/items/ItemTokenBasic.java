@@ -5,10 +5,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ItemCrafter extends Item
+public class ItemTokenBasic extends Item
 {
 
-    public ItemCrafter(int par1)
+    public ItemTokenBasic(int par1)
     {
         super(par1);
     }
