@@ -48,8 +48,6 @@ public class Tools
      */
     public Tools()
     {
-
-        
         itemCrafter=new ItemCrafter(1000).setUnlocalizedName("CrafterTool").setCreativeTab(CreativeTabs.tabTools).setMaxStackSize(16);
         LanguageRegistry.addName(itemCrafter, "Portable crafter");
     }
