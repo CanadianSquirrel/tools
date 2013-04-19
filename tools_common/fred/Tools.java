@@ -18,20 +18,23 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
-import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import fred.items.ItemCrafter;
+import fred.lib.Values;
 
-@Mod(modid = "toolsMod", name="Tools", version="1.0.0")
+
+
+@Mod(modid = Values.ModInfo.MOD_ID, name=Values.ModInfo.MOD_NAME, version=Values.ModInfo.MOD_VERSION)
+
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 
 public class Tools
 {
     @Instance
     public static Tools instance;
-    
-    Logger log=Logger.getLogger("Tools");
+    Values references;
+    Logger log=Logger.getLogger(Values.ModInfo.MOD_NAME);
     
     @SidedProxy(clientSide="fred.client.ClientProxy", serverSide="fred.CommonProxy")
     public static CommonProxy proxy;
