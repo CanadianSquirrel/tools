@@ -25,7 +25,7 @@ import fred.lib.Values;
 
 
 
-@Mod(modid = Values.ModInfo.MOD_ID, name=Values.ModInfo.MOD_NAME, version=Values.ModInfo.MOD_VERSION)
+@Mod(modid = Values.MOD_ID, name=Values.MOD_NAME, version=Values.MOD_VERSION)
 
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 
@@ -34,7 +34,7 @@ public class Tools
     @Instance
     public static Tools instance;
     Values references;
-    Logger log=Logger.getLogger(Values.ModInfo.MOD_NAME);
+    Logger log=Logger.getLogger(Values.MOD_NAME);
     
     @SidedProxy(clientSide="fred.client.ClientProxy", serverSide="fred.CommonProxy")
     public static CommonProxy proxy;
@@ -51,14 +51,14 @@ public class Tools
      */
     public Tools()
     {
-        itemCrafter=new ItemCrafter(1000).setUnlocalizedName("CrafterTool").setCreativeTab(CreativeTabs.tabTools).setMaxStackSize(16);
-        LanguageRegistry.addName(itemCrafter, "Portable crafter");
+        
     }
     
     @PreInit
     public void preInit(FMLPreInitializationEvent e)
     {
-        
+        itemCrafter=new ItemCrafter(1000).setUnlocalizedName("CrafterTool").setCreativeTab(CreativeTabs.tabTools).setMaxStackSize(16);
+        LanguageRegistry.addName(itemCrafter, "Portable crafter");
     }
     @Init
     public void ini(FMLInitializationEvent e)
