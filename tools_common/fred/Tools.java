@@ -20,7 +20,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import fred.items.ItemCrafter;
+import fred.items.ItemTokenBasic;
+import fred.lib.ItemNames;
 import fred.lib.Values;
 
 
@@ -40,7 +41,7 @@ public class Tools
     public static CommonProxy proxy;
     //items
         //crafter
-        public static Item itemCrafter; 
+        public static Item item_tokenBasic; 
         //--crafter
     //--items
     
@@ -57,8 +58,8 @@ public class Tools
     @PreInit
     public void preInit(FMLPreInitializationEvent e)
     {
-        itemCrafter=new ItemCrafter(1000).setUnlocalizedName("CrafterTool").setCreativeTab(CreativeTabs.tabTools).setMaxStackSize(16);
-        LanguageRegistry.addName(itemCrafter, "Portable crafter");
+        item_tokenBasic=new ItemTokenBasic(1000).setUnlocalizedName(ItemNames.ITEM_TOKEN_BASIC).setCreativeTab(CreativeTabs.tabTools).setMaxStackSize(16);
+        LanguageRegistry.addName(item_tokenBasic, ItemNames.ITEM_TOKEN_BASIC);
     }
     @Init
     public void ini(FMLInitializationEvent e)
@@ -67,7 +68,7 @@ public class Tools
         
         log.info("Loading tools mod!");
         
-        GameRegistry.addRecipe(new ItemStack(itemCrafter,16), "xxx","yyy","zzz",'x',new ItemStack(Item.pickaxeDiamond),'y',new ItemStack(Item.axeDiamond),'z',Item.shovelDiamond);
+        GameRegistry.addRecipe(new ItemStack(item_tokenBasic,16), "xxx","yyy","zzz",'x',new ItemStack(Item.pickaxeDiamond),'y',new ItemStack(Item.axeDiamond),'z',Item.shovelDiamond);
         
         //silk touch
         addSilkC(Item.pickaxeDiamond);
@@ -85,13 +86,13 @@ public class Tools
     {
         ItemStack d=new ItemStack(tool);
         d.addEnchantment(Enchantment.silkTouch, 1);
-        GameRegistry.addRecipe(d,"xzx","xyx","xxx",'x',new ItemStack(Block.blockDiamond),'y',new ItemStack(tool),'z',new ItemStack(itemCrafter));
+        GameRegistry.addRecipe(d,"xzx","xyx","xxx",'x',new ItemStack(Block.blockDiamond),'y',new ItemStack(tool),'z',new ItemStack(item_tokenBasic));
     }
     private void addFortuneC(Item tool)
     {
         ItemStack d=new ItemStack(tool);
         d.addEnchantment(Enchantment.fortune, 1);
-        GameRegistry.addRecipe(d,"xzx","xyx","xxx",'x',new ItemStack(Block.blockGold),'y',new ItemStack(tool),'z',new ItemStack(itemCrafter));
+        GameRegistry.addRecipe(d,"xzx","xyx","xxx",'x',new ItemStack(Block.blockGold),'y',new ItemStack(tool),'z',new ItemStack(item_tokenBasic));
     }
     
     @PostInit
